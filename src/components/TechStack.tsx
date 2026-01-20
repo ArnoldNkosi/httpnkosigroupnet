@@ -1,119 +1,147 @@
 import { motion } from "framer-motion";
-import { Cloud, Server } from "lucide-react";
 
-const azureServices = [
-  "Microsoft Fabric",
-  "Azure Data Factory",
-  "Azure Synapse Analytics",
-  "Azure Databricks",
-  "Azure Data Lake Storage",
-  "Azure Stream Analytics",
-  "Azure Event Hubs",
-  "Azure HDInsight",
-  "Azure Purview",
-  "Azure Machine Learning",
-];
-
-const awsServices = [
-  "AWS Glue",
-  "Amazon Redshift",
-  "AWS Data Pipeline",
-  "Amazon Kinesis",
-  "Amazon EMR",
-  "AWS Lake Formation",
-  "Amazon Athena",
-  "Amazon QuickSight",
-  "AWS Step Functions",
-  "Amazon MWAA",
+const technologies = [
+  {
+    name: "Microsoft Azure",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
+  },
+  {
+    name: "Google Cloud",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+  },
+  {
+    name: "Amazon Web Services",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  },
+  {
+    name: "Java",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  },
+  {
+    name: "C#",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+  },
+  {
+    name: "Kubernetes",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+  },
+  {
+    name: "Spring",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+  },
+  {
+    name: "Quarkus",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/quarkus/quarkus-original.svg",
+  },
+  {
+    name: "MongoDB",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  },
+  {
+    name: "PostgreSQL",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  },
+  {
+    name: "Python",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  {
+    name: "DataDog",
+    logo: "https://imgix.datadoghq.com/img/dd_logo_n_70x75.png",
+  },
+  {
+    name: "GitHub Actions",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  },
 ];
 
 const TechStack = () => {
+  const duplicatedTech = [...technologies, ...technologies];
+
   return (
     <section id="tech" className="py-24 relative border-t border-border">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Technology{" "}
             <span className="text-emerald">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            Deep expertise across leading cloud platforms and data engineering technologies.
+            We leverage industry-leading technologies to build scalable, 
+            reliable solutions for your enterprise.
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-px bg-border">
-          {/* Azure Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-background p-10"
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 bg-[#0078D4] flex items-center justify-center">
-                <Cloud className="w-6 h-6 text-white" />
+      {/* Scrolling banner */}
+      <div className="relative overflow-hidden py-12 bg-secondary/30">
+        {/* Gradient overlays */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+        
+        <motion.div 
+          className="flex gap-16 items-center"
+          animate={{ x: [0, -50 * technologies.length] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear",
+            },
+          }}
+        >
+          {duplicatedTech.map((tech, index) => (
+            <div
+              key={`${tech.name}-${index}`}
+              className="flex-shrink-0 flex flex-col items-center gap-3 group"
+            >
+              <div className="w-16 h-16 flex items-center justify-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                <img
+                  src={tech.logo}
+                  alt={tech.name}
+                  className="w-12 h-12 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
               </div>
-              <div>
-                <h3 className="font-display text-2xl font-bold">Microsoft Azure</h3>
-                <p className="text-muted-foreground text-sm">Data & Analytics Services</p>
-              </div>
+              <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
+                {tech.name}
+              </span>
             </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              {azureServices.map((service, index) => (
-                <motion.div
-                  key={service}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="py-3 border-b border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary transition-colors cursor-default"
-                >
-                  {service}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-          {/* AWS Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="bg-background p-10"
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 bg-[#FF9900] flex items-center justify-center">
-                <Server className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-display text-2xl font-bold">Amazon Web Services</h3>
-                <p className="text-muted-foreground text-sm">Data Pipeline Services</p>
-              </div>
+      {/* Additional capabilities grid */}
+      <div className="container mx-auto px-6 mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+        >
+          {[
+            { label: "Cloud Architecture", desc: "Azure, GCP, AWS" },
+            { label: "Backend Development", desc: "Java, C#, Python" },
+            { label: "Data Platforms", desc: "MongoDB, PostgreSQL" },
+            { label: "DevOps & CI/CD", desc: "Kubernetes, GitHub Actions" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="p-6 border border-border hover:border-primary/50 transition-colors"
+            >
+              <h3 className="font-display font-semibold mb-1">{item.label}</h3>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
             </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              {awsServices.map((service, index) => (
-                <motion.div
-                  key={service}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="py-3 border-b border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary transition-colors cursor-default"
-                >
-                  {service}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
