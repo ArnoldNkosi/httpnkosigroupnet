@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Database, Network, Cloud, Cpu, GitBranch, Layers, Workflow, Shield } from "lucide-react";
+import { Code2, Database, Network, ArrowRight } from "lucide-react";
 
 const services = [
   {
@@ -27,38 +27,33 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
-      <div className="container relative z-10 mx-auto px-6">
+    <section id="services" className="py-24 relative border-t border-border">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest mb-4 block">
-            What We Do
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-            Comprehensive Technology{" "}
-            <span className="text-gradient">Solutions</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Digital & Tech{" "}
+            <span className="text-emerald">Capabilities</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From strategy to implementation, we partner with you to deliver technology 
-            solutions that create lasting value.
+          <p className="text-xl text-muted-foreground max-w-2xl">
+            We implement and secure large-scale tech programs, architect platforms 
+            and enable digital capabilities of the future.
           </p>
         </motion.div>
 
@@ -67,29 +62,38 @@ const Services = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-px bg-border"
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
-              className="glass rounded-2xl p-8 hover:shadow-glow transition-all duration-500 group"
+              className="bg-background p-10 group hover:bg-card transition-colors duration-500"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <service.icon className="w-7 h-7 text-primary-foreground" />
+              <div className="mb-8">
+                <service.icon className="w-12 h-12 text-primary" strokeWidth={1.5} />
               </div>
               
-              <h3 className="font-display text-2xl font-bold mb-4">{service.title}</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
+              <h3 className="font-display text-2xl font-bold mb-4 group-hover:text-emerald transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                {service.description}
+              </p>
               
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-8">
                 {service.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    <span className="w-1 h-1 bg-primary rounded-full" />
                     <span className="text-foreground/80">{feature}</span>
                   </li>
                 ))}
               </ul>
+
+              <button className="flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-4 transition-all">
+                Learn more
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </motion.div>
           ))}
         </motion.div>
