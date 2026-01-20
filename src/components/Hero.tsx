@@ -113,9 +113,7 @@ const Hero = () => {
             className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-8"
           >
             Accelerating{" "}
-            <span className="text-emerald">Tech</span>
-            <br />
-            Excellence
+            <span className="text-emerald">Growth</span>
           </motion.h1>
 
           {/* Subheading */}
