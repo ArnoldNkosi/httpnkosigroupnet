@@ -41,7 +41,7 @@ const industries = [
   },
   {
     id: "manufacturing",
-    name: "Manufacturing & Industrial",
+    name: "Manufacturing",
     description: "Implement Industry 4.0 solutions with predictive maintenance, supply chain optimization, and quality analytics. We help manufacturers increase throughput, reduce downtime, and achieve operational excellence through data.",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
   },
@@ -57,48 +57,54 @@ const Industries = () => {
   const [activeIndustry, setActiveIndustry] = useState(industries[0]);
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
-      <div className="container relative z-10 mx-auto px-6">
+    <section id="industries" className="py-24 relative">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest mb-4 block">
-            Industries We Serve
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-            Technology Solutions for{" "}
-            <span className="text-gradient">Every Sector</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            Industry{" "}
+            <span className="text-emerald">Knowledge</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            We bring deep industry expertise combined with cutting-edge technology 
-            to solve your most complex challenges.
-          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Industry List */}
-          <div className="lg:col-span-4 space-y-1">
-            {industries.map((industry) => (
-              <button
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Industry List - BCG style */}
+          <div className="lg:col-span-4 space-y-0">
+            {industries.map((industry, index) => (
+              <motion.button
                 key={industry.id}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
                 onClick={() => setActiveIndustry(industry)}
-                className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 group ${
+                className={`w-full text-left py-4 border-b border-border transition-all duration-300 group flex items-center justify-between ${
                   activeIndustry.id === industry.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground/80"
+                    ? "border-primary"
+                    : "hover:border-muted-foreground"
                 }`}
               >
-                <span className={`font-display text-xl md:text-2xl lg:text-3xl font-semibold transition-all duration-300 ${
-                  activeIndustry.id === industry.id ? "text-gradient" : ""
+                <span className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-300 ${
+                  activeIndustry.id === industry.id 
+                    ? "text-foreground" 
+                    : "text-muted-foreground hover:text-foreground"
                 }`}>
                   {industry.name}
                 </span>
-              </button>
+                {activeIndustry.id === industry.id && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-primary"
+                  >
+                    <ArrowRight className="w-6 h-6" />
+                  </motion.div>
+                )}
+              </motion.button>
             ))}
           </div>
 
@@ -107,29 +113,30 @@ const Industries = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndustry.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid md:grid-cols-2 gap-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="grid md:grid-cols-2 gap-8"
               >
                 {/* Image */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={activeIndustry.image}
                     alt={activeIndustry.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  {/* Emerald overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent mix-blend-overlay" />
                 </div>
 
                 {/* Description */}
                 <div className="flex flex-col justify-center">
-                  <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
+                  <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2 text-emerald">
                     {activeIndustry.name}
-                    <ArrowRight className="w-5 h-5 text-primary" />
+                    <ArrowRight className="w-4 h-4" />
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
                     {activeIndustry.description}
                   </p>
                 </div>

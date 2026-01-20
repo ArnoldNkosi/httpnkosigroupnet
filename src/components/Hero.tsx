@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Database, Network } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -12,40 +12,110 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-dark" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `linear-gradient(hsl(var(--primary) / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.3) 1px, transparent 1px)`,
-        backgroundSize: '60px 60px'
-      }} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden wireframe-bg">
+      {/* Geometric wireframe SVG background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <svg
+          className="absolute w-full h-full opacity-20"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          {/* Geometric lines */}
+          <motion.path
+            d="M0 450 L400 200 L800 350 L1200 150 L1440 300"
+            fill="none"
+            stroke="hsl(160 100% 41%)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M0 600 L300 450 L700 550 L1100 400 L1440 500"
+            fill="none"
+            stroke="hsl(160 100% 41%)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.6 }}
+            transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M200 0 L400 300 L350 600 L500 900"
+            fill="none"
+            stroke="hsl(160 100% 41%)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.4 }}
+            transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M1000 0 L900 250 L1100 500 L950 900"
+            fill="none"
+            stroke="hsl(160 100% 41%)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.4 }}
+            transition={{ duration: 2, delay: 0.7, ease: "easeOut" }}
+          />
+          
+          {/* Glowing nodes */}
+          <motion.circle
+            cx="400"
+            cy="200"
+            r="4"
+            fill="hsl(160 100% 41%)"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+          />
+          <motion.circle
+            cx="800"
+            cy="350"
+            r="4"
+            fill="hsl(160 100% 41%)"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.7 }}
+          />
+          <motion.circle
+            cx="1200"
+            cy="150"
+            r="4"
+            fill="hsl(160 100% 41%)"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.9 }}
+          />
+        </svg>
+      </div>
+
+      {/* Subtle glow effects */}
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
       <div className="container relative z-10 mx-auto px-6 pt-24">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
+        <div className="max-w-5xl mx-auto">
+          {/* Tagline */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 glass-light rounded-full px-4 py-2 mb-8"
+            className="text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-8"
           >
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm text-muted-foreground font-medium">Enterprise Technology Consultancy</span>
-          </motion.div>
+            Unlocking Potential & Creating Impact
+          </motion.p>
 
-          {/* Main heading */}
+          {/* Main heading - BCG style large typography */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-8"
           >
-            Engineering Excellence for the{" "}
-            <span className="text-gradient">Modern Enterprise</span>
+            Accelerating{" "}
+            <span className="text-emerald">Tech</span>
+            <br />
+            Excellence
           </motion.h1>
 
           {/* Subheading */}
@@ -53,10 +123,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
           >
-            We architect, build, and optimize enterprise-grade software and data solutions 
-            that transform businesses and drive measurable outcomes.
+            We are technology-minded specialists. Our deep expertise in software 
+            engineering, data platforms, and cloud architecture helps enterprises 
+            transform and thrive.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -64,57 +135,38 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            className="flex flex-col sm:flex-row gap-4"
           >
             <Button variant="hero" size="xl" onClick={scrollToContact}>
               Start a Conversation
-              <ArrowRight className="ml-2" />
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button variant="outline" size="xl" onClick={scrollToServices}>
               Explore Our Services
             </Button>
           </motion.div>
 
-          {/* Stats or quick info */}
+          {/* Stats row */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-12 border-t border-border"
           >
             {[
-              { icon: Code2, label: "Software Engineering", desc: "Full-stack development & modernization" },
-              { icon: Database, label: "Data Engineering", desc: "Pipelines, lakes & analytics platforms" },
-              { icon: Network, label: "Architecture Advisory", desc: "Cloud-native & enterprise design" },
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className="glass rounded-xl p-6 hover:border-primary/50 transition-all duration-300 group"
-              >
-                <item.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="font-display font-semibold text-lg mb-2">{item.label}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              { number: "50+", label: "Clients empowered" },
+              { number: "100+", label: "Projects delivered" },
+              { number: "15+", label: "Years experience" },
+              { number: "24/7", label: "Support available" },
+            ].map((stat, index) => (
+              <div key={stat.label} className="text-left">
+                <p className="text-4xl md:text-5xl font-bold text-emerald mb-2">{stat.number}</p>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-3 bg-primary rounded-full mt-2"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };
