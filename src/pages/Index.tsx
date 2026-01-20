@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ClientLogoBanner from "@/components/ClientLogoBanner";
+import Industries from "@/components/Industries";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
 import ContactForm from "@/components/ContactForm";
@@ -12,7 +12,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ClientLogoBanner />
+        <Industries />
         <Services />
         <div id="tech">
           <TechStack />
