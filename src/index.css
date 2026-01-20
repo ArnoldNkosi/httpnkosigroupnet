@@ -6,46 +6,46 @@
 
 @layer base {
   :root {
-    /* Light theme with Emerald green accent */
+    /* Light theme with Electric Blue accent */
     --background: 0 0% 100%;
-    --foreground: 0 0% 8%;
+    --foreground: 220 20% 10%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 8%;
+    --card: 220 20% 98%;
+    --card-foreground: 220 20% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 220 20% 10%;
 
-    --primary: 160 100% 36%;
+    --primary: 220 90% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 8%;
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 20% 10%;
 
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 160 100% 36%;
+    --accent: 220 90% 56%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 160 100% 36%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 220 90% 56%;
 
     --radius: 0px;
 
     /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(160 100% 36%) 0%, hsl(160 100% 30%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 98% / 0.8) 0%, hsl(0 0% 96% / 0.6) 100%);
-    --gradient-glow: radial-gradient(ellipse at center, hsl(160 100% 36% / 0.08) 0%, transparent 70%);
+    --gradient-primary: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(240 80% 60%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 98%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 98% / 0.8) 0%, hsl(220 20% 96% / 0.6) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(220 90% 56% / 0.08) 0%, transparent 70%);
     
-    --shadow-glow: 0 0 80px hsl(160 100% 36% / 0.15);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.08);
-    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.1);
+    --shadow-glow: 0 0 80px hsl(220 90% 56% / 0.15);
+    --shadow-card: 0 8px 32px hsl(220 20% 10% / 0.08);
+    --shadow-elevated: 0 20px 60px hsl(220 20% 10% / 0.1);
 
     --font-display: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -181,8 +181,8 @@
 /* Geometric grid pattern */
 .geometric-grid {
   background-image: 
-    linear-gradient(hsl(160 100% 36% / 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(160 100% 36% / 0.06) 1px, transparent 1px);
+    linear-gradient(hsl(220 90% 56% / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(220 90% 56% / 0.06) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
@@ -200,7 +200,7 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 30%, hsl(160 100% 36% / 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, hsl(160 100% 36% / 0.03) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, hsl(220 90% 56% / 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, hsl(220 90% 56% / 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
