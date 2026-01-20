@@ -11,12 +11,13 @@ const Footer = () => {
           {/* Logo & Copyright */}
           <div className="flex items-center gap-4">
             <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-              <span className="font-display font-bold text-primary-foreground text-sm">SC</span>
+              <span className="font-display font-bold text-primary-foreground text-sm">D</span>
             </div>
             <div>
-              <span className="font-display font-bold">
-                Synapse<span className="text-primary">Core</span>
-              </span>
+              <span className="font-display font-bold">Datao</span>
+              <p className="text-xs text-muted-foreground">
+                A Nkosi Group Company
+              </p>
               <p className="text-xs text-muted-foreground">
                 © {currentYear} All rights reserved.
               </p>
@@ -47,7 +48,7 @@ const Footer = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="mailto:contact@synapsecore.io"
+              href="mailto:contact@nkosigroup.net"
               className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
               aria-label="Email"
             >

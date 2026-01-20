@@ -23,10 +23,10 @@ const Header = () => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-              <span className="font-display font-bold text-primary-foreground text-sm">SC</span>
+              <span className="font-display font-bold text-primary-foreground text-sm">D</span>
             </div>
             <span className="font-display font-bold text-lg hidden sm:block">
-              Synapse<span className="text-primary">Core</span>
+              Datao
             </span>
           </a>
 
