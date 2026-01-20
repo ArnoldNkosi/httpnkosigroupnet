@@ -16,7 +16,7 @@ const Hero = () => {
       {/* Geometric wireframe SVG background */}
       <div className="absolute inset-0 pointer-events-none">
         <svg
-          className="absolute w-full h-full opacity-20"
+          className="absolute w-full h-full opacity-30"
           viewBox="0 0 1440 900"
           preserveAspectRatio="xMidYMid slice"
         >
@@ -24,7 +24,7 @@ const Hero = () => {
           <motion.path
             d="M0 450 L400 200 L800 350 L1200 150 L1440 300"
             fill="none"
-            stroke="hsl(160 100% 41%)"
+            stroke="hsl(160 100% 36%)"
             strokeWidth="1"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
@@ -33,7 +33,7 @@ const Hero = () => {
           <motion.path
             d="M0 600 L300 450 L700 550 L1100 400 L1440 500"
             fill="none"
-            stroke="hsl(160 100% 41%)"
+            stroke="hsl(160 100% 36%)"
             strokeWidth="1"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.6 }}
@@ -42,7 +42,7 @@ const Hero = () => {
           <motion.path
             d="M200 0 L400 300 L350 600 L500 900"
             fill="none"
-            stroke="hsl(160 100% 41%)"
+            stroke="hsl(160 100% 36%)"
             strokeWidth="1"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.4 }}
@@ -51,7 +51,7 @@ const Hero = () => {
           <motion.path
             d="M1000 0 L900 250 L1100 500 L950 900"
             fill="none"
-            stroke="hsl(160 100% 41%)"
+            stroke="hsl(160 100% 36%)"
             strokeWidth="1"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.4 }}
@@ -63,7 +63,7 @@ const Hero = () => {
             cx="400"
             cy="200"
             r="4"
-            fill="hsl(160 100% 41%)"
+            fill="hsl(160 100% 36%)"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.5 }}
@@ -72,7 +72,7 @@ const Hero = () => {
             cx="800"
             cy="350"
             r="4"
-            fill="hsl(160 100% 41%)"
+            fill="hsl(160 100% 36%)"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.7 }}
@@ -81,7 +81,7 @@ const Hero = () => {
             cx="1200"
             cy="150"
             r="4"
-            fill="hsl(160 100% 41%)"
+            fill="hsl(160 100% 36%)"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.9 }}
@@ -90,8 +90,8 @@ const Hero = () => {
       </div>
 
       {/* Subtle glow effects */}
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
       <div className="container relative z-10 mx-auto px-6 pt-24">
         <div className="max-w-5xl mx-auto">
