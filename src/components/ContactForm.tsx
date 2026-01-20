@@ -16,19 +16,40 @@ const ContactForm = () => {
     message: "",
   });
 
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+      .join("&");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...formData,
+        }),
+      });
 
-    toast({
-      title: "Message sent successfully",
-      description: "We'll get back to you within 24 hours.",
-    });
+      toast({
+        title: "Message sent successfully",
+        description: "We'll get back to you within 24 hours.",
+      });
 
-    setFormData({ name: "", email: "", company: "", message: "" });
-    setIsSubmitting(false);
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Message failed",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -65,10 +86,16 @@ const ContactForm = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <form 
-              onSubmit={handleSubmit} 
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
               className="border border-border p-8 bg-card"
             >
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
               <div className="grid md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block text-left">
