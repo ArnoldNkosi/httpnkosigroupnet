@@ -11,25 +11,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Prepare - Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Prepare - Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Prepare - Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build - Vite
         run: npm run build
 
-      - name: Install Netlify CLI
+      - name: Deploy - Install Netlify CLI
         run: npm i -g netlify-cli
 
-      - name: Deploy to Netlify
+      - name: Deploy - Netlify
         run: netlify deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
