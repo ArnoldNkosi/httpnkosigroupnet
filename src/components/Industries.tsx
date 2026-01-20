@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 const industries = [
   {
@@ -54,7 +54,11 @@ const industries = [
 ];
 
 const Industries = () => {
-  const [activeIndustry, setActiveIndustry] = useState(industries[0]);
+  const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
+
+  const toggleIndustry = (id: string) => {
+    setActiveIndustry(activeIndustry === id ? null : id);
+  };
 
   return (
     <section id="industries" className="py-24 relative">
@@ -71,78 +75,77 @@ const Industries = () => {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          {/* Industry List - BCG style */}
-          <div className="lg:col-span-4 space-y-0">
-            {industries.map((industry, index) => (
-              <motion.button
-                key={industry.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                onClick={() => setActiveIndustry(industry)}
-                className={`w-full text-left py-4 border-b border-border transition-all duration-300 group flex items-center justify-between ${
-                  activeIndustry.id === industry.id
-                    ? "border-primary"
-                    : "hover:border-muted-foreground"
-                }`}
+        <div className="max-w-4xl">
+          {industries.map((industry, index) => (
+            <motion.div
+              key={industry.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="border-b border-border"
+            >
+              {/* Industry Header */}
+              <button
+                onClick={() => toggleIndustry(industry.id)}
+                className="w-full py-6 flex items-center justify-between group"
               >
                 <span className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-300 ${
-                  activeIndustry.id === industry.id 
-                    ? "text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                  activeIndustry === industry.id 
+                    ? "text-emerald" 
+                    : "text-foreground group-hover:text-emerald"
                 }`}>
                   {industry.name}
                 </span>
-                {activeIndustry.id === industry.id && (
+                <motion.div
+                  animate={{ rotate: activeIndustry === industry.id ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={`transition-colors ${
+                    activeIndustry === industry.id ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
+                  <ChevronDown className="w-6 h-6" />
+                </motion.div>
+              </button>
+
+              {/* Expandable Content */}
+              <AnimatePresence>
+                {activeIndustry === industry.id && (
                   <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="text-primary"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
                   >
-                    <ArrowRight className="w-6 h-6" />
+                    <div className="pb-8 grid md:grid-cols-2 gap-8">
+                      {/* Image */}
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <img
+                          src={industry.image}
+                          alt={industry.name}
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Emerald overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent mix-blend-multiply" />
+                      </div>
+
+                      {/* Description */}
+                      <div className="flex flex-col justify-center">
+                        <h3 className="font-display text-lg font-semibold mb-3 flex items-center gap-2 text-emerald">
+                          {industry.name}
+                          <ArrowRight className="w-4 h-4" />
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {industry.description}
+                        </p>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Content Area */}
-          <div className="lg:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndustry.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-                className="grid md:grid-cols-2 gap-8"
-              >
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={activeIndustry.image}
-                    alt={activeIndustry.name}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Emerald overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent mix-blend-overlay" />
-                </div>
-
-                {/* Description */}
-                <div className="flex flex-col justify-center">
-                  <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2 text-emerald">
-                    {activeIndustry.name}
-                    <ArrowRight className="w-4 h-4" />
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {activeIndustry.description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
