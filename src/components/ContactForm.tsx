@@ -41,128 +41,115 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative border-t border-border">
+    <section id="contact" className="py-20 relative border-t border-border">
       <div className="container mx-auto px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Left side - Text content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Let's Build{" "}
-                <span className="text-emerald">Together</span>
-              </h2>
-              <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-                Whether you're looking to modernize your systems, build new data 
-                capabilities, or need strategic technology guidance, we're here to help.
-              </p>
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-10"
+          >
+            <h2 className="font-display text-3xl md:text-4xl font-bold leading-tight mb-4">
+              Let's Build{" "}
+              <span className="text-emerald">Together</span>
+            </h2>
+            <p className="text-muted-foreground">
+              Ready to transform your business? Get in touch with our team.
+            </p>
+          </motion.div>
 
-              <div className="space-y-8">
-                <div className="border-l-2 border-primary pl-6">
-                  <h4 className="font-display font-semibold text-lg mb-1">Quick Response</h4>
-                  <p className="text-muted-foreground">
-                    We typically respond within 24 hours on business days.
-                  </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <form 
+              onSubmit={handleSubmit} 
+              className="border border-border p-8 bg-card"
+            >
+              <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block text-left">
+                    Name *
+                  </label>
+                  <Input
+                    name="name"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="h-11 bg-background border-border focus:border-primary rounded-none"
+                  />
                 </div>
 
-                <div className="border-l-2 border-border pl-6 hover:border-primary transition-colors">
-                  <h4 className="font-display font-semibold text-lg mb-1">Enterprise Ready</h4>
-                  <p className="text-muted-foreground">
-                    We work with businesses of all sizes, from startups to Fortune 500.
-                  </p>
+                <div>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block text-left">
+                    Email *
+                  </label>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="h-11 bg-background border-border focus:border-primary rounded-none"
+                  />
                 </div>
               </div>
-            </motion.div>
 
-            {/* Right side - Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-                      Name
-                    </label>
-                    <Input
-                      name="name"
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="h-12 bg-card border-border focus:border-primary rounded-none"
-                    />
-                  </div>
+              <div className="mb-4">
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block text-left">
+                  Company
+                </label>
+                <Input
+                  name="company"
+                  placeholder="Company name (optional)"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="h-11 bg-background border-border focus:border-primary rounded-none"
+                />
+              </div>
 
-                  <div>
-                    <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-                      Email
-                    </label>
-                    <Input
-                      name="email"
-                      type="email"
-                      placeholder="your@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="h-12 bg-card border-border focus:border-primary rounded-none"
-                    />
-                  </div>
+              <div className="mb-6">
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block text-left">
+                  Message *
+                </label>
+                <Textarea
+                  name="message"
+                  placeholder="Tell us about your project..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  className="bg-background border-border focus:border-primary resize-none rounded-none"
+                />
+              </div>
 
-                  <div>
-                    <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-                      Company (Optional)
-                    </label>
-                    <Input
-                      name="company"
-                      placeholder="Company name"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="h-12 bg-card border-border focus:border-primary rounded-none"
-                    />
-                  </div>
+              <Button
+                type="submit"
+                variant="hero"
+                size="lg"
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    Send Message
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </>
+                )}
+              </Button>
+            </form>
 
-                  <div>
-                    <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-                      Message
-                    </label>
-                    <Textarea
-                      name="message"
-                      placeholder="Tell us about your project..."
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="bg-card border-border focus:border-primary resize-none rounded-none"
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="hero"
-                  size="lg"
-                  className="w-full"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Send Message
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </>
-                  )}
-                </Button>
-              </form>
-            </motion.div>
-          </div>
+            <p className="text-xs text-muted-foreground mt-4">
+              We typically respond within 24 hours on business days.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
