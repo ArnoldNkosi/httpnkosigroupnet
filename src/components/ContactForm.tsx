@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -21,10 +22,19 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      await fetch("/.netlify/functions/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      const id = crypto.randomUUID();
+      await supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'contact-notification',
+          recipientEmail: 'arnold.n@nkosigroup.net',
+          idempotencyKey: `contact-notify-${id}`,
+          templateData: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            message: formData.message,
+          },
+        },
       });
 
       toast({
