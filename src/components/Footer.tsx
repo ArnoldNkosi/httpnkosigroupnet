@@ -43,15 +43,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-display font-semibold text-sm uppercase tracking-wider mb-6">
-              Contact
-            </h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>nkosigroup.net</li>
-            </ul>
-          </div>
         </div>
 
         {/* Bottom bar */}
