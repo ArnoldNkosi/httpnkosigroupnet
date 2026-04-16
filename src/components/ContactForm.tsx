@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
