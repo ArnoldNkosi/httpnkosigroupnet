@@ -49,11 +49,6 @@ const Footer = () => {
               Contact
             </h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <a href="mailto:contact@nkosigroup.net" className="hover:text-foreground transition-colors">
-                  contact@nkosigroup.net
-                </a>
-              </li>
               <li>nkosigroup.net</li>
             </ul>
           </div>
